@@ -1,0 +1,154 @@
+:root {
+  --oracle-text: #f2ead7;
+  --oracle-subtitle: #cfc6b2;
+
+  --oracle-purple: rgba(180, 120, 255, 0.8);
+  --oracle-purple-soft: rgba(180, 120, 255, 0.25);
+  --oracle-purple-softest: rgba(180, 120, 255, 0.15);
+}
+
+.oracle-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.oracle-background {
+  position: fixed;
+  inset: 0;
+
+  background-image: url('/backgrounds/ritual-chamber.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.oracle-frame-container {
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.oracle-frame {
+  width: 950px;
+  max-width: 90vw;
+
+  pointer-events: none;
+
+  animation: oracleFramePulse 4s ease-in-out infinite;
+
+  filter:
+    drop-shadow(0 0 8px var(--oracle-purple-soft))
+    drop-shadow(0 0 16px var(--oracle-purple-softest));
+}
+
+@keyframes oracleFramePulse {
+
+  0%,
+  100% {
+    filter:
+      drop-shadow(0 0 8px var(--oracle-purple-soft))
+      drop-shadow(0 0 16px var(--oracle-purple-softest));
+  }
+
+  50% {
+    filter:
+      drop-shadow(0 0 12px rgba(180, 120, 255, 0.45))
+      drop-shadow(0 0 28px rgba(180, 120, 255, 0.25));
+  }
+}
+
+.oracle-title {
+  margin: 0;
+
+  color: var(--oracle-text);
+
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  text-shadow:
+    0 0 8px rgba(255, 240, 200, 0.25);
+}
+
+.oracle-subtitle {
+  margin-top: 8px;
+
+  color: var(--oracle-subtitle);
+
+  font-size: 1rem;
+
+  text-shadow:
+    0 0 6px rgba(255, 240, 200, 0.15);
+}
+
+.oracle-button {
+  position: relative;
+  width: 360px;
+}
+
+.oracle-button-image {
+  display: block;
+  width: 100%;
+
+  transition:
+    filter 0.25s ease,
+    transform 0.25s ease;
+}
+
+.oracle-button:hover .oracle-button-image {
+  filter:
+    brightness(1.2)
+    drop-shadow(0 0 12px rgba(180, 120, 255, 0.8));
+
+  transform: scale(1.02);
+}
+
+.oracle-button button {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: transparent;
+  border: none;
+
+  color: var(--oracle-text);
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+}
+
+.oracle-reset-button {
+  position: absolute;
+
+  top: 24px;
+  right: 24px;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  color: var(--oracle-text);
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.oracle-reset-button:hover {
+  background: rgba(80, 40, 140, 0.6);
+}

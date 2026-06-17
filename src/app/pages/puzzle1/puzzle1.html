@@ -1,0 +1,92 @@
+<div class="oracle-page">
+
+    <div class="oracle-background"></div>
+
+    <div class="oracle-frame-container">
+
+        <img
+            class="oracle-frame"
+            src="/ui/frame.png"
+            alt="Frame">
+
+        <div class="puzzle-content">
+
+            <div class="content-top">
+
+                <h1 class="oracle-title">
+                    1. Pareģojums
+                </h1>
+
+                <p class="oracle-subtitle">
+                    Sakārto simbolus pareizajā secībā.
+                </p>
+
+            </div>
+
+            <div class="symbols-row">
+
+                @for(symbol of symbols; track symbol) {
+
+                    <div
+                        class="symbol"
+                        [class.symbol-empty]="isUsed(symbol)"
+                        [class.selected]="selectedSymbol === symbol"
+                        (click)="selectSymbol(symbol)">
+
+                        <span class="symbol-glyph">
+                            {{ symbol }}
+                        </span>
+
+                    </div>
+
+                }
+
+            </div>
+
+            <div class="slots-row">
+
+                @for(slot of slots; track $index) {
+
+                    <div
+                        class="slot"
+                        [class.filled]="slot"
+                        [class.slot-flash]="recentlyFilledSlot === $index"
+                        (click)="slot ? removeFromSlot($index) : placeIntoSlot($index)">
+
+                        <img
+                            class="slot-image"
+                            src="/ui/symbol-slot.png"
+                            alt="Slot">
+
+                        @if(slot) {
+
+                            <div class="slot-symbol">
+                                {{ slot }}
+                            </div>
+
+                        }
+
+                    </div>
+
+                }
+
+            </div>
+
+            <div class="oracle-button">
+
+                <img
+                    class="oracle-button-image"
+                    src="/ui/button-primary.png"
+                    alt="Button">
+
+                <button type="button">
+                    APSTIPRINĀT
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

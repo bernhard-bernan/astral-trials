@@ -1,0 +1,77 @@
+<div class="oracle-page">
+
+  <div class="oracle-background"></div>
+
+  <div class="oracle-frame-container">
+
+    <img
+      class="oracle-frame"
+      src="/ui/frame.png"
+      alt="Frame">
+
+    <div class="content">
+
+      <div class="content-top">
+
+        <h1 class="oracle-title">
+          Orākula Pārbaudījumi
+        </h1>
+
+        <p class="oracle-subtitle">
+          Ievadi atrasto zīmi
+        </p>
+
+      </div>
+
+      <div class="content-bottom">
+
+        <div class="input-wrapper">
+
+          <img
+            class="input-image"
+            src="/ui/input-plate.png"
+            alt="Input">
+
+          <input
+            type="text"
+            [(ngModel)]="code"
+            placeholder="Ievadi zīmi"
+            (keyup.enter)="submitCode()"
+          />
+
+        </div>
+
+        <div class="oracle-button">
+
+          <img
+            class="oracle-button-image"
+            src="/ui/button-primary.png"
+            alt="Button">
+
+          <button
+            type="button"
+            (click)="submitCode()">
+            ATVĒRT CEĻU
+          </button>
+
+        </div>
+
+      </div>
+
+      @if(message) {
+        <p class="message">
+          {{ message }}
+        </p>
+      }
+
+    </div>
+
+    <button
+      class="oracle-reset-button"
+      (click)="resetProgress()">
+      ⚙
+    </button>
+
+  </div>
+
+</div>

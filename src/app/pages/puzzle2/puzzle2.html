@@ -1,0 +1,35 @@
+<div class="container">
+
+  <h1>Puzzle 2</h1>
+
+  <p>
+    Placeholder for the Five Visions puzzle.
+  </p>
+
+  @if(!solved) {
+
+    <button (click)="solvePuzzle()">
+      Solve Puzzle
+    </button>
+
+  }
+
+  @if(solved) {
+
+    <div class="reward">
+
+      <h2>The Oracle Speaks...</h2>
+
+      <div class="code">
+        ORACLE
+      </div>
+
+      <button (click)="backToGateway()">
+        Return To Gateway
+      </button>
+
+    </div>
+
+  }
+
+</div>
