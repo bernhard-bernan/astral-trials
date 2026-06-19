@@ -1,6 +1,6 @@
 .content {
   width: 560px;
-  max-width: 75vw;
+  max-width: 100%;
 
   display: flex;
   flex-direction: column;
@@ -20,17 +20,4 @@
 
   text-shadow:
     0 0 6px rgba(255, 240, 200, 0.08);
-}
-
-.oracle-divider {
-  margin: 8px 0 12px;
-
-  color: #d7c0ff;
-
-  font-size: 1.2rem;
-
-  letter-spacing: 12px;
-
-  text-shadow:
-    0 0 12px rgba(180, 120, 255, 0.6);
 }

@@ -7,35 +7,26 @@ import { GameStateService } from '../../core/services/game-state';
 
 @Component({
   selector: 'app-gateway',
-  imports: [
-    CommonModule,
-    FormsModule
-  ],
+  imports: [CommonModule, FormsModule],
   templateUrl: './gateway.html',
   styleUrl: './gateway.scss',
 })
 export class Gateway {
-
   code = '';
   message = '';
 
   constructor(
     private router: Router,
-    private gameStateService: GameStateService
+    private gameStateService: GameStateService,
   ) {}
 
   submitCode(): void {
-
     const state = this.gameStateService.getState();
 
-    const normalizedCode = this.code
-      .trim()
-      .toUpperCase();
+    const normalizedCode = this.code.trim().toUpperCase();
 
     switch (normalizedCode) {
-
       case 'ASTRA':
-
         this.gameStateService.unlockPuzzle1();
 
         this.code = '';
@@ -44,12 +35,9 @@ export class Gateway {
         this.router.navigate(['/puzzle1']);
         break;
 
-      case 'PLĪVURS':
-      case 'PLIVURS':
-
+      case 'LUMEN':
         if (!state.puzzle1Solved) {
-          this.message =
-            'Pareģojums vēl nav piepildīts.';
+          this.message = 'Pareģojums vēl nav piepildīts.';
           return;
         }
 
@@ -59,12 +47,9 @@ export class Gateway {
         this.router.navigate(['/puzzle2']);
         break;
 
-      case 'ORĀKULS':
-      case 'ORAKULS':
-
+      case 'VIREN':
         if (!state.puzzle2Solved) {
-          this.message =
-            'Otrā vīzija vēl nav atklāta.';
+          this.message = 'Otrā vīzija vēl nav atklāta.';
           return;
         }
 
@@ -75,19 +60,15 @@ export class Gateway {
         break;
 
       default:
-
-        this.message =
-          'Gars vēl neatbild.';
+        this.message = 'Gars vēl neatbild.';
     }
   }
 
   resetProgress(): void {
-
     this.gameStateService.reset();
 
     this.code = '';
 
-    this.message =
-      'Progress atiestatīts.';
+    this.message = 'Progress atiestatīts.';
   }
 }

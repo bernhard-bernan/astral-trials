@@ -1,0 +1,37 @@
+<div class="oracle-page">
+  <div class="oracle-background"></div>
+
+  <div class="oracle-frame-container">
+    <div class="oracle-frame-layout">
+      <img class="oracle-frame" src="/ui/frame.png" alt="Frame" />
+
+      <div class="oracle-inner">
+        <div class="oracle-content content-centered">
+          <div class="content">
+            <h1 class="oracle-title">
+              {{ content.title }}
+            </h1>
+
+            @for (paragraph of content.paragraphs; track paragraph) {
+              <p class="lore-paragraph">
+                {{ paragraph }}
+              </p>
+            }
+
+            @if (locationHint) {
+              <p class="lore-paragraph">
+                {{ locationHint }}
+              </p>
+            }
+
+            <div class="oracle-button">
+              <img class="oracle-button-image" src="/ui/button-primary.png" alt="Button" />
+
+              <button type="button" (click)="continue()">TURPINĀT</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

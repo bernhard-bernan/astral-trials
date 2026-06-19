@@ -1,77 +1,48 @@
 <div class="oracle-page">
-
   <div class="oracle-background"></div>
 
   <div class="oracle-frame-container">
+    <div class="oracle-frame-layout">
+      <img class="oracle-frame" src="/ui/frame.png" alt="Frame" />
 
-    <img
-      class="oracle-frame"
-      src="/ui/frame.png"
-      alt="Frame">
+      <div class="oracle-inner">
+        <div class="oracle-content content-centered">
+          <div class="content">
+            <div class="content-top">
+              <h1 class="oracle-title">Orākula Pārbaudījumi</h1>
 
-    <div class="content">
+              <p class="oracle-subtitle">Ievadi atrasto zīmi</p>
+            </div>
 
-      <div class="content-top">
+            <div class="content-bottom">
+              <div class="input-wrapper">
+                <img class="input-image" src="/ui/input-plate.png" alt="Input" />
 
-        <h1 class="oracle-title">
-          Orākula Pārbaudījumi
-        </h1>
+                <input
+                  type="text"
+                  [(ngModel)]="code"
+                  placeholder="Ievadi zīmi"
+                  (keyup.enter)="submitCode()"
+                />
+              </div>
 
-        <p class="oracle-subtitle">
-          Ievadi atrasto zīmi
-        </p>
+              <div class="oracle-button">
+                <img class="oracle-button-image" src="/ui/button-primary.png" alt="Button" />
 
+                <button type="button" (click)="submitCode()">ATVĒRT CEĻU</button>
+              </div>
+            </div>
+
+            @if (message) {
+              <p class="message">
+                {{ message }}
+              </p>
+            }
+          </div>
+        </div>
       </div>
 
-      <div class="content-bottom">
-
-        <div class="input-wrapper">
-
-          <img
-            class="input-image"
-            src="/ui/input-plate.png"
-            alt="Input">
-
-          <input
-            type="text"
-            [(ngModel)]="code"
-            placeholder="Ievadi zīmi"
-            (keyup.enter)="submitCode()"
-          />
-
-        </div>
-
-        <div class="oracle-button">
-
-          <img
-            class="oracle-button-image"
-            src="/ui/button-primary.png"
-            alt="Button">
-
-          <button
-            type="button"
-            (click)="submitCode()">
-            ATVĒRT CEĻU
-          </button>
-
-        </div>
-
-      </div>
-
-      @if(message) {
-        <p class="message">
-          {{ message }}
-        </p>
-      }
-
+      <button class="oracle-reset-button" (click)="resetProgress()">⚙</button>
     </div>
-
-    <button
-      class="oracle-reset-button"
-      (click)="resetProgress()">
-      ⚙
-    </button>
-
   </div>
-
 </div>

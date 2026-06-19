@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { GameStateService } from '../../core/services/game-state';
 
 @Component({
   selector: 'app-puzzle1',
@@ -7,29 +10,28 @@ import { Component } from '@angular/core';
   styleUrl: './puzzle1.scss',
 })
 export class Puzzle1 {
+  constructor(
+    private readonly router: Router,
+    private readonly gameStateService: GameStateService,
+  ) {}
 
-  symbols = [
-    '☉',
-    '☽',
-    '✦',
-    '👁',
-    '♄'
-  ];
+  readonly symbols = ['☉', '☽', '✦', '👁', '♄'];
+
+  readonly correctOrder = ['✦', '☉', '♄', '👁', '☽'];
 
   selectedSymbol: string | null = null;
 
   recentlyFilledSlot: number | null = null;
 
-  slots: (string | null)[] = [
-    null,
-    null,
-    null,
-    null,
-    null
-  ];
+  showError = false;
+
+  slots: (string | null)[] = [null, null, null, null, null];
+
+  get isReady(): boolean {
+    return this.slots.every((slot) => slot !== null);
+  }
 
   selectSymbol(symbol: string): void {
-
     if (this.isUsed(symbol)) {
       return;
     }
@@ -38,7 +40,6 @@ export class Puzzle1 {
   }
 
   placeIntoSlot(index: number): void {
-
     if (!this.selectedSymbol) {
       return;
     }
@@ -59,7 +60,6 @@ export class Puzzle1 {
   }
 
   removeFromSlot(index: number): void {
-
     if (!this.slots[index]) {
       return;
     }
@@ -67,9 +67,29 @@ export class Puzzle1 {
     this.slots[index] = null;
   }
 
-  isUsed(symbol: string): boolean {
+  submit(): void {
+    if (!this.isReady) {
+      return;
+    }
 
-    return this.slots.includes(symbol);
+    const isCorrect = this.slots.every((slot, index) => slot === this.correctOrder[index]);
+
+    if (isCorrect) {
+      this.gameStateService.solvePuzzle1();
+
+      this.router.navigate(['/lore', 'puzzle2']);
+
+      return;
+    }
+
+    this.showError = true;
+
+    setTimeout(() => {
+      this.showError = false;
+    }, 600);
   }
 
+  isUsed(symbol: string): boolean {
+    return this.slots.includes(symbol);
+  }
 }

@@ -1,35 +1,68 @@
-<div class="container">
+<div class="oracle-page">
+  <div class="oracle-background"></div>
 
-  <h1>Puzzle 2</h1>
+  <div class="oracle-frame-container">
+    <div class="oracle-frame-layout">
+      <img class="oracle-frame" src="/ui/frame.png" alt="Frame" />
 
-  <p>
-    Placeholder for the Five Visions puzzle.
-  </p>
+      <div class="oracle-inner">
+        <div class="oracle-content">
+          <div class="content-top">
+            <h1 class="oracle-title">2. Novērojums</h1>
+          </div>
 
-  @if(!solved) {
+          <div class="relic-browser">
+            <div class="oracle-arrow oracle-arrow-left" (click)="previousRelics()">
+              <img src="/ui/relic-arrow.png" alt="Previous" />
+            </div>
 
-    <button (click)="solvePuzzle()">
-      Solve Puzzle
-    </button>
+            <div class="relic-display">
+              @for (relic of visibleRelics; track relic.id) {
+                <div
+                  class="relic-card"
+                  [class.selected]="isSelected(relic)"
+                  [class.light-red]="currentLight === 'red'"
+                  [class.light-blue]="currentLight === 'blue'"
+                  [class.light-gold]="currentLight === 'gold'"
+                  (click)="selectRelic(relic)"
+                >
+                  @if (getVisibleSymbol(relic)) {
+                    <div class="relic-symbol">
+                      {{ getVisibleSymbol(relic) }}
+                    </div>
+                  }
 
-  }
+                  <img class="relic-image" [src]="relic.image" [alt]="relic.id" />
+                </div>
+              }
+            </div>
 
-  @if(solved) {
+            <div class="oracle-arrow oracle-arrow-right" (click)="nextRelics()">
+              <img src="/ui/relic-arrow.png" alt="Next" />
+            </div>
+          </div>
+        </div>
 
-    <div class="reward">
+        <div class="oracle-controls oracle-controls-bottom">
+          <div class="control-left">
+            <div class="oracle-button light-button">
+              <img class="oracle-button-image" src="/ui/button-primary.png" alt="Button" />
 
-      <h2>The Oracle Speaks...</h2>
+              <button type="button" (click)="cycleLight()">
+                {{ lightLabel }}
+              </button>
+            </div>
+          </div>
 
-      <div class="code">
-        ORACLE
+          <div class="control-right">
+            <div class="oracle-button" [class.ready]="isReady">
+              <img class="oracle-button-image" src="/ui/button-primary.png" alt="Button" />
+
+              <button type="button" [disabled]="!isReady" (click)="submit()">APSTIPRINĀT</button>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <button (click)="backToGateway()">
-        Return To Gateway
-      </button>
-
     </div>
-
-  }
-
+  </div>
 </div>

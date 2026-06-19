@@ -1,0 +1,86 @@
+.oracle-content {
+    padding-bottom: 55px;
+}
+
+.content {
+  width: 560px;
+  max-width: 75vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 5px;
+
+  text-align: center;
+}
+
+.intro-text {
+  margin: 0;
+
+  color: var(--oracle-subtitle);
+
+  line-height: 1.6;
+}
+
+.team-button {
+  width: 280px;
+
+  transition:
+    transform .25s ease,
+    filter .25s ease;
+
+  margin-top: 12px;
+}
+
+.team-button:hover {
+  transform: translateY(-4px) scale(1.03);
+}
+
+/* =========================
+   PELĒKĀ
+   ========================= */
+
+.team-button-gray {
+  filter:
+    drop-shadow(0 0 14px rgba(235, 235, 235, .45))
+    drop-shadow(0 0 30px rgba(235, 235, 235, .18));
+}
+
+.team-button-gray:hover {
+  filter:
+    drop-shadow(0 0 20px rgba(245, 245, 245, .75))
+    drop-shadow(0 0 40px rgba(245, 245, 245, .35));
+}
+
+/* =========================
+   SMILŠU
+   ========================= */
+
+.team-button-sand {
+  filter:
+    drop-shadow(0 0 14px rgba(255, 225, 170, .50))
+    drop-shadow(0 0 30px rgba(255, 225, 170, .20));
+}
+
+.team-button-sand:hover {
+  filter:
+    drop-shadow(0 0 20px rgba(255, 230, 180, .80))
+    drop-shadow(0 0 40px rgba(255, 230, 180, .40));
+}
+
+/* =========================
+   ZAĻĀ
+   ========================= */
+
+.team-button-green {
+  filter:
+    drop-shadow(0 0 14px rgba(185, 245, 185, .50))
+    drop-shadow(0 0 30px rgba(185, 245, 185, .20));
+}
+
+.team-button-green:hover {
+  filter:
+    drop-shadow(0 0 20px rgba(195, 255, 195, .80))
+    drop-shadow(0 0 40px rgba(195, 255, 195, .40));
+}

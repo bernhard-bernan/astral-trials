@@ -1,1 +1,79 @@
-<h1>Puzzle 3</h1>
+<div class="oracle-page">
+  <div class="oracle-background"></div>
+
+  <div class="oracle-frame-container">
+    <div class="oracle-frame-layout">
+      <img class="oracle-frame" src="/ui/frame.png" alt="Frame" />
+
+      <div class="oracle-inner">
+        <div class="oracle-content">
+          <div class="content-top">
+            <h1 class="oracle-title">3. Atmiņa</h1>
+          </div>
+
+          <div class="cards-row">
+            @for (card of cards; track card.id) {
+              <div
+                class="tablet-card"
+                [class.used]="isUsed(card)"
+                [class.selected]="selectedCard?.id === card.id"
+                (click)="selectCard(card)"
+              >
+                <img class="tablet-card-image" src="/ui/puzzle3/tablet-card.png" alt="Card" />
+
+                <div class="tablet-symbol">
+                  {{ card.symbol }}
+                </div>
+
+                <div class="tablet-order">
+                  {{ card.orderSymbol }}
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="slots-row" [class.error]="showError">
+            @for (slot of slots; track $index) {
+              <div
+                class="tablet-slot"
+                (click)="slot ? removeFromSlot($index) : placeIntoSlot($index)"
+              >
+                <img class="tablet-slot-image" src="/ui/puzzle3/tablet-slot.png" alt="Slot" />
+
+                @if (slot) {
+                  <div class="placed-card">
+                    <img
+                      class="placed-card-image"
+                      src="/ui/puzzle3/tablet-card.png"
+                      alt="Placed Card"
+                    />
+
+                    <div class="placed-card-symbol">
+                      {{ slot.symbol }}
+                    </div>
+
+                    <div class="placed-card-order">
+                      {{ slot.orderSymbol }}
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="oracle-controls oracle-controls-bottom">
+          <div class="control-left"></div>
+
+          <div class="control-right">
+            <div class="oracle-button" [class.ready]="isReady">
+              <img class="oracle-button-image" src="/ui/button-primary.png" alt="Button" />
+
+              <button type="button" [disabled]="!isReady" (click)="submit()">APSTIPRINĀT</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

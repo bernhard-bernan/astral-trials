@@ -1,15 +1,310 @@
-.container {
-  padding: 3rem;
+.oracle-content {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
 }
 
-.code {
-  font-size: 2rem;
-  font-weight: bold;
-  color: purple;
-  margin: 1rem 0;
+.content-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-button {
-  padding: 1rem;
+.relic-browser {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 30px;
+}
+
+.relic-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.relic-card {
+  position: relative;
+
+  width: 280px;
+  height: 280px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    filter .25s ease;
+}
+
+.relic-card:hover {
+  transform: translateY(-6px) scale(1.03);
+}
+
+.relic-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  transition:
+    filter .35s ease,
+    transform .25s ease;
+}
+
+/* =========================
+   RED LIGHT
+   ========================= */
+
+.relic-card.light-red .relic-image {
+
+  filter:
+    sepia(.35)
+    hue-rotate(-25deg)
+    saturate(1.4)
+    drop-shadow(0 0 14px rgba(255, 80, 80, .25));
+
+}
+
+/* =========================
+   BLUE LIGHT
+   ========================= */
+
+.relic-card.light-blue .relic-image {
+
+  filter:
+    sepia(.15)
+    hue-rotate(165deg)
+    saturate(1.35)
+    drop-shadow(0 0 14px rgba(80, 160, 255, .25));
+
+}
+
+/* =========================
+   GOLD LIGHT
+   ========================= */
+
+.relic-card.light-gold .relic-image {
+
+  filter:
+    sepia(.45)
+    saturate(1.25)
+    brightness(1.05)
+    drop-shadow(0 0 14px rgba(255, 215, 120, .25));
+
+}
+
+/* =========================
+   SELECTED RED
+   ========================= */
+
+.relic-card.selected.light-red .relic-image {
+
+  animation:
+    selectedRelicPulseRed 2s ease-in-out infinite;
+
+}
+
+/* =========================
+   SELECTED BLUE
+   ========================= */
+
+.relic-card.selected.light-blue .relic-image {
+
+  animation:
+    selectedRelicPulseBlue 2s ease-in-out infinite;
+
+}
+
+/* =========================
+   SELECTED GOLD
+   ========================= */
+
+.relic-card.selected.light-gold .relic-image {
+
+  animation:
+    selectedRelicPulseGold 2s ease-in-out infinite;
+
+}
+
+.light-button {
+  width: 250px;
+}
+
+/* =========================
+   RED PULSE
+   ========================= */
+
+@keyframes selectedRelicPulseRed {
+
+  0%,
+  100% {
+
+    filter:
+      sepia(.35)
+      hue-rotate(-25deg)
+      saturate(1.4)
+      brightness(1.08)
+      drop-shadow(0 0 20px rgba(255, 80, 80, .8))
+      drop-shadow(0 0 40px rgba(255, 80, 80, .45));
+
+  }
+
+  50% {
+
+    filter:
+      sepia(.35)
+      hue-rotate(-25deg)
+      saturate(1.55)
+      brightness(1.18)
+      drop-shadow(0 0 30px rgba(255, 80, 80, 1))
+      drop-shadow(0 0 60px rgba(255, 80, 80, .65));
+
+  }
+
+}
+
+/* =========================
+   BLUE PULSE
+   ========================= */
+
+@keyframes selectedRelicPulseBlue {
+
+  0%,
+  100% {
+
+    filter:
+      sepia(.15)
+      hue-rotate(165deg)
+      saturate(1.35)
+      brightness(1.08)
+      drop-shadow(0 0 20px rgba(80, 160, 255, .8))
+      drop-shadow(0 0 40px rgba(80, 160, 255, .45));
+
+  }
+
+  50% {
+
+    filter:
+      sepia(.15)
+      hue-rotate(165deg)
+      saturate(1.55)
+      brightness(1.18)
+      drop-shadow(0 0 30px rgba(80, 160, 255, 1))
+      drop-shadow(0 0 60px rgba(80, 160, 255, .65));
+
+  }
+
+}
+
+/* =========================
+   GOLD PULSE
+   ========================= */
+
+@keyframes selectedRelicPulseGold {
+
+  0%,
+  100% {
+
+    filter:
+      sepia(.45)
+      saturate(1.25)
+      brightness(1.08)
+      drop-shadow(0 0 20px rgba(255, 215, 120, .8))
+      drop-shadow(0 0 40px rgba(255, 215, 120, .45));
+
+  }
+
+  50% {
+
+    filter:
+      sepia(.45)
+      saturate(1.45)
+      brightness(1.18)
+      drop-shadow(0 0 30px rgba(255, 215, 120, 1))
+      drop-shadow(0 0 60px rgba(255, 215, 120, .65));
+
+  }
+
+}
+
+.relic-symbol {
+  position: absolute;
+
+  top: -18px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: #f2d3a5;
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  text-shadow:
+    0 0 8px rgba(220, 180, 255, .5),
+    0 0 18px rgba(180, 120, 255, .35);
+
+  pointer-events: none;
+
+  transition:
+    color .35s ease,
+    text-shadow .35s ease;
+}
+
+.relic-card.light-red .relic-symbol {
+  color: #ffb0b0;
+
+  text-shadow:
+    0 0 10px rgba(255, 80, 80, .7),
+    0 0 20px rgba(255, 80, 80, .35);
+}
+
+.relic-card.light-blue .relic-symbol {
+  color: #b8d8ff;
+
+  text-shadow:
+    0 0 10px rgba(80, 160, 255, .7),
+    0 0 20px rgba(80, 160, 255, .35);
+}
+
+.relic-card.light-gold .relic-symbol {
+  color: #ffe0a0;
+
+  text-shadow:
+    0 0 10px rgba(255, 215, 120, .7),
+    0 0 20px rgba(255, 215, 120, .35);
+}
+
+.relic-card.selected .relic-symbol {
+  transform:
+    translateX(-50%)
+    scale(1.15);
+}
+
+.oracle-button.ready .oracle-button-image {
+  animation:
+    readyPulse 2s ease-in-out infinite;
+}
+
+@keyframes readyPulse {
+  0%,
+  100% {
+    filter:
+      brightness(1.05)
+      drop-shadow(0 0 8px var(--oracle-purple-soft));
+  }
+
+  50% {
+    filter:
+      brightness(1.18)
+      drop-shadow(0 0 18px var(--oracle-purple));
+  }
 }
